@@ -24,13 +24,13 @@ ENV APACHE_PID_FILE /var/run/apache2.pid
 EXPOSE 80
 
 # get Gibbon v13.0.02
-RUN wget https://github.com/GibbonEdu/core/archive/v14.0.01.tar.gz
+RUN wget https://github.com/GibbonEdu/core/archive/v17.0.00.tar.gz
 
 # extract files
-RUN tar -xzf v14.0.01.tar.gz
+RUN tar -xzf v17.0.00.tar.gz
 
 # Copy this repo into place.
-RUN cp -a /core-14.0.01/. /var/www/site
+RUN cp -a /core-17.0.00/. /var/www/site
 
 # Copy .htaccess
 ADD .htaccess /var/www/site
@@ -42,8 +42,8 @@ ADD apache-config.conf /etc/apache2/sites-enabled/000-default.conf
 RUN chmod -R 755 /var/www/site
 RUN chown -R www-data:www-data /var/www/site
 
-RUN rm -rf core-13.0.02
-RUN rm -rf v13.0.02.tar.gz
+RUN rm -rf core-17.0.00
+RUN rm -rf v17.0.00.tar.gz
 
 # By default start up apache in the foreground, override with /bin/bash for interative.
 CMD /usr/sbin/apache2ctl -D FOREGROUND
